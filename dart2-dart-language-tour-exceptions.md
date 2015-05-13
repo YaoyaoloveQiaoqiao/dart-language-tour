@@ -52,12 +52,12 @@ try {
   print('Something really unknown: $e');
 }
 </pre>
-像之前的代码展示一样，你可以用on或者catch，或者两者都用。当你需要指定异常类型的时候用on，当你的异常处理者需要异常对象时用catch。
+像之前的代码展示一样，你可以用 `on` 或者 `catch` ，或者两者都用。当你需要指定异常类型的时候用on，当你的异常处理者需要异常对象时用catch。
 
 
 Finally
 
-为了确保不论是否抛出异常，代码都正常运行，用finally子句。如果没有捕获到匹配子句的异常，finally子句运行以后异常被传递了：
+为了确保不论是否抛出异常，代码都正常运行，用  `finally` 子句。如果没有 `catch` 到匹配子句的异常， `finally `子句运行以后异常被传递了：
 
 
 <pre>
@@ -69,7 +69,7 @@ try {
 }
 </pre>
 
-在匹配了所有捕获之后，子句finally子句运行了。
+在匹配了所有 `catch` 之后，子句 `finally` 子句运行了。
 
 <pre>
 try {
@@ -80,7 +80,7 @@ try {
   cleanLlamaStalls();  // Then clean up.
 }
 </pre>
-通过阅读异常部分可了解更多。
+通过阅读 [Exceptions](https://www.dartlang.org/docs/dart-up-and-running/ch03.html#exceptions)部分可了解更多。
 
 
 
