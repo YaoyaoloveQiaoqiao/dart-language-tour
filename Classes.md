@@ -1,5 +1,5 @@
 #类
-Dart 是一种面向对象语言，包含类和基于 mixin 的继承两部分。每个对象是一个类的实例，并且 [Object](https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/dart:core.Object) 是所有类的父类。基于 mixin 的继承指的是除了每个类（除了 Object ）都只有一个父类，类体还可以在多个类继承中被重用。
+Dart 是一种面向对象语言，包含类和基于 mixin 的继承两部分。每个对象是一个类的实例，并且 [Object](https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/dart:core.Object) 是所有类的父类。基于 mixin 的继承指的是每个类（除了 Object ）都只有一个父类，类体还可以在多个类继承中被重用。
 
 要创建一个对象，你可以使用 `new` 关键词并在其后跟上一个构造函数。构造函数可以写成`类名`，或者`类名.标识符`形式。例如：
 
@@ -13,7 +13,7 @@ var p1 = new Point(2, 2);
 var p2 = new Point.fromJson(jsonData);
 </pre>
 
-对象的成员分为函数成员和数据成员两类（各自的方法和实例变量）。当你调用一个方法时，你是通过一个对象来调用它的：该方法可访问该对象的方法和数据。用 . 指向对象的方法和数据成员。
+对象的成员分为函数和数据两类（各自的方法和实例变量）。当你调用一个方法时，你是通过一个对象来调用它的：该方法可访问该对象的方法和数据。用 . 指向对象的方法和数据成员。
 
 <pre>
 var p = new Point(2, 2);
@@ -64,7 +64,7 @@ class Point {
 }
 </pre>
 
-所有未初始化的实例变量的值为`空`。
+所有未初始化的实例变量的值为 `null` 。
 
 所有的实例变量会自动生成一个隐式的 getter 方法。 Non-final 实例变量也会自动生成一个隐式的 setter 方法。有关详细信息，参见 [getter and setter](https://www.dartlang.org/docs/dart-up-and-running/ch02.html#getters-and-setters) 。
 
@@ -105,7 +105,7 @@ class Point {
 
 注意：只有当名字冲突时才能使用 this。否则，Dart 会忽略 this 。
 
-为一个实例变量分配一个构造函数参数的模式是很常见的，Dart在语法上的好处使它使用起来更容易：
+为一个实例变量分配一个构造函数参数的模式是很常见的，Dart有语法糖使它使用起来更容易：
 
 <pre>
 class Point {
@@ -226,7 +226,7 @@ class Point {
 }
 </pre>
 
-静态的构造函数
+静态构造函数
 
 如果你的类产生的对象永远不会改变，你可以让这些对象成为编译时常量。为此，需要定义一个 `const` 构造函数并确保所有的实例变量都是 `final` 的。
 
