@@ -42,13 +42,13 @@ try {
 try {
   breedMoreLlamas();
 } on OutOfLlamasException {
-  // A specific exception
+  // 一个具体异常
   buyMoreLlamas();
 } on Exception catch (e) {
-  // Anything else that is an exception
+  // 任意一个异常
   print('Unknown exception: $e');
 } catch (e) {
-  // No specified type, handles all
+  // 非具体类型
   print('Something really unknown: $e');
 }
 </pre>
@@ -64,20 +64,20 @@ Finally
 try {
   breedMoreLlamas();
 } finally {
-  // Always clean up, even if an exception is thrown.
+  // 即使抛出一个异常时也会进行清理
   cleanLlamaStalls();
 }
 </pre>
 
-在匹配了所有 `catch` 之后，子句 `finally` 子句运行了。
+在匹配了所有 `catch` 之后，子句 `finally` 运行了。
 
 <pre>
 try {
   breedMoreLlamas();
 } catch(e) {
-  print('Error: $e');  // Handle the exception first.
+  print('Error: $e');  // 先处理异常
 } finally {
-  cleanLlamaStalls();  // Then clean up.
+  cleanLlamaStalls();  // 然后清理
 }
 </pre>
 通过阅读 [Exceptions](https://www.dartlang.org/docs/dart-up-and-running/ch03.html#exceptions)部分可了解更多。

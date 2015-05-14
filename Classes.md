@@ -1,4 +1,4 @@
-#Classes类
+#类
 Dart 是一种面向对象语言，包含类和基于 mixin 的继承两部分。每个对象是一个类的实例，并且 [Object](https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/dart:core.Object) 是所有类的父类。基于 mixin 的继承指的是除了每个类（除了 Object ）都只有一个父类，类体还可以在多个类继承中被重用。
 
 要创建一个对象，你可以使用 `new` 关键词并在其后跟上一个构造函数。构造函数可以写成`类名`，或者`类名.标识符`形式。例如：
