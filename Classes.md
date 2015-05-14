@@ -1,7 +1,7 @@
 #Classes类
-Dart 是一种面向对象语言，包含类和基于 mixin 的继承两部分。每个对象是一个类的实例，并且 [Object](https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/dart:core.Object) 是所有类的父类。基于 mixin 的继承指的是除了每个类（除了 Object ）都有一个父类，类体还可以在多个类继承中被复写。
+Dart 是一种面向对象语言，包含类和基于 mixin 的继承两部分。每个对象是一个类的实例，并且 [Object](https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/dart:core.Object) 是所有类的父类。基于 mixin 的继承指的是除了每个类（除了 Object ）都只有一个父类，类体还可以在多个类继承中被重用。
 
-你可以用带有类构造函数的 `new` 关键字创建一个对象。构造函数决定了写成`类名`，还是`类名.标识符`形式。例如：
+要创建一个对象，你可以使用 `new` 关键词并在其后跟上一个构造函数。构造函数可以写成`类名`，或者`类名.标识符`形式。例如：
 
 <pre>
 var jsonData = JSON.decode('{"x":1, "y":2}');
@@ -13,7 +13,7 @@ var p1 = new Point(2, 2);
 var p2 = new Point.fromJson(jsonData);
 </pre>
 
-对象包含函数和数据成员（各自的方法和实例变量）。当你用一个对象调用一个方法：该方法可访问该对象的方法和数据。用 . 指向对象的方法和数据成员。
+对象的成员分为函数成员和数据成员两类（各自的方法和实例变量）。当你调用一个方法时，你是通过一个对象来调用它的：该方法可访问该对象的方法和数据。用 . 指向对象的方法和数据成员。
 
 <pre>
 var p = new Point(2, 2);
@@ -37,7 +37,7 @@ querySelector('#button') // 获取一个对象。
     ..onClick.listen((e) => window.alert('Confirmed!'));
 </pre>
 
-一些类提供常量构造函数，创建一个编译时用的常量构造函数，用 `const` 关键字代替 `new` ：
+一些类提供常量构造函数，要创建一个编译时用的常量构造函数，使用 `const` 关键字代替 `new` ：
 
 <pre>
 var p = const ImmutablePoint(2, 2);
@@ -66,7 +66,7 @@ class Point {
 
 所有未初始化的实例变量的值为`空`。
 
-所有的实例变量生成一个隐含的 getter 方法。 Non-final 实例变量也产生一个隐含的 setter 方法。有关详细信息，参见 [getter and setter](https://www.dartlang.org/docs/dart-up-and-running/ch02.html#getters-and-setters) 。
+所有的实例变量会自动生成一个隐式的 getter 方法。 Non-final 实例变量也会自动生成一个隐式的 setter 方法。有关详细信息，参见 [getter and setter](https://www.dartlang.org/docs/dart-up-and-running/ch02.html#getters-and-setters) 。
 
 <pre>
 class Point {
@@ -86,7 +86,7 @@ main() {
 
 构造函数
 
-通过创建一个与类名同名的函数声明一个构造函数（或者加上一个额外的标识符命名构造函数的描述）。构造函数的最常见的形式，自动生成的构造函数，下面创建一个类的新实例：
+要声明一个构造函数，只需创建一个与类同名的方法（或者加上一个额外的标识符命名构造函数的描述）。构造函数最常见的形式，就是自动生成的构造函数，下面创建一个类的新实例：
 
 <pre>
 class Point {
@@ -105,7 +105,7 @@ class Point {
 
 注意：只有当名字冲突时才能使用 this。否则，Dart 会忽略 this 。
 
-在一个实例变量分配一个构造函数参数的模式是很常见的，Dart有语法糖使它使用起来更容易：
+为一个实例变量分配一个构造函数参数的模式是很常见的，Dart在语法上的好处使它使用起来更容易：
 
 <pre>
 class Point {
@@ -120,7 +120,7 @@ class Point {
 
 默认构造函数
 
-如果你不声明一个构造函数，系统会提供默认构造函数。默认构造函数没有参数，调用父类的无参数构造函数。
+如果你不声明一个构造函数，系统会提供默认构造函数。默认构造函数没有参数，它将调用父类的无参数构造函数。
 
 构造函数不能继承
 
@@ -128,7 +128,7 @@ class Point {
 
 命名构造函数
 
-使用命名构造函数来实现多个构造函数的类或提供额外的声明：
+使用命名构造函数可以为一个类声明多个构造函数，或者说是提供额外的声明：
 
 <pre>
 class Point {
@@ -145,11 +145,11 @@ class Point {
 }
 </pre>
 
-记住，构造函数不能继承，这意味着子类不会继承父类的构造函数。如果你想要一个类是父类定义的命名构造函数创建的，你必须在子类中实现该构造函数。
+记住，构造函数不能继承，这意味着子类不会继承父类的构造函数。如果你希望子类在创建之后能够拥有在父类中声明的命名构造函数，你就必须在子类中实现该构造函数。
 
 调用非默认的父类的构造函数
 
-默认情况下，在子类的构造函数调用父类的无参数构造函数。如果父类没有构造函数，则必须手动调用父类的构造函数中的一个。在冒号后指定父类的构造函数（：），在构造函数前（如果有的话）。
+默认情况下，在子类的构造函数将会调用父类的无参数构造函数。如果父类没有构造函数，则必须手动调用父类的构造函数中的一个。在冒号（：）之后、构造函数之前指定父类的构造函数（如果有的话）。
 
 <pre>
 class Person {
@@ -175,7 +175,7 @@ main() {
 }
 </pre>
 
-由于父类在调用构造函数前会检测参数，参数可以是一个表达式，如函数调用：
+在调用父类构造函数前会检测参数，这个参数可以是一个表达式，如函数调用：
 
 <pre>
 class Employee extends Person {
@@ -184,11 +184,11 @@ class Employee extends Person {
 }
 </pre>
 
-警告：父类的构造函数的参数不能访问。例如，参数可调用静态方法但是不能调用实方法。
+警告：父类构造函数的参数不能访问 `this`。例如，参数可调用静态方法但是不能调用实方法。
 
 初始化列表
 
-除了调用父类的构造函数初始化实例变量，你也可以在构造函数体运行之前初始化实例。用逗号隔开使其分别初始化。
+除了调用父类构造函数，你也可以在构造函数体运行之前初始化实例变量。用逗号隔开使其分别初始化。
 
 <pre>
 class Point {
@@ -207,11 +207,11 @@ class Point {
 }
 </pre>
 
-警告：右手边的初始化程序无法完成。
+警告：右手边的初始化程序无法访问 `this` 关键字。
 
-重载构造函数
+重定向构造函数
 
-有时一个构造函数的唯一目的是重载到另一个构造函数在同一个类中。如果一个重载构造函数主体是空的的话，那么调用这个构造函数的时候，调用后面直接加冒号即可。
+有时一个构造函数的目的只是重定向到同一个类中的另一个构造函数。如果一个重定向的构造函数的主体为空，那么调用这个构造函数的时候，直接在冒号后面调用这个构造函数即可。
 
 <pre>
 class Point {
@@ -228,7 +228,7 @@ class Point {
 
 静态的构造函数
 
-如果你的类产生的对象永远不会改变，你可以把这些对象编写成常量。为此，定义一个 `const` 构造函数能确保所有的实例变量是 `final` 。
+如果你的类产生的对象永远不会改变，你可以让这些对象成为编译时常量。为此，需要定义一个 `const` 构造函数并确保所有的实例变量都是 `final` 的。
 
 <pre>
 class ImmutablePoint {
@@ -242,7 +242,7 @@ class ImmutablePoint {
 
 工厂构造函数
 
-当实现一个构造函数使用 `factory` 关键词，这个构造函数不必非要创建类的新实例。例如，工厂构造函数可能从缓存返回实例，或者它可能返回子类型的实例。
+当实现一个使用 `factory` 关键词修饰的构造函数时，这个构造函数不必创建类的新实例。例如，工厂构造函数可能从缓存返回实例，或者它可能返回子类型的实例。
 下面的示例演示一个工厂构造函数从缓存返回的对象：
 
 <pre>
@@ -276,7 +276,7 @@ class Logger {
 
 注：工厂构造函数不能用 this。
 
-调用一个工厂构造函数，你用 `new` 关键字：
+调用一个工厂构造函数，你需要使用 `new` 关键字：
 
 <pre>
 var logger = new Logger('UI');
@@ -285,7 +285,7 @@ logger.log('Button clicked');
 
 方法
 
-方法的功能是提供一个对象的行为。
+方法就是为对象提供行为的函数。
 
 实例方法
 
@@ -307,7 +307,7 @@ class Point {
 }
 </pre>
 
-setters 和 Getters 是一种提供对方法属性读和写的特殊方法。每个实例变量有一个隐式 getter 方法，如果适当的话还会有个 setter 方法。你可以创建额外的属性通过实现 getters 和 setters ，用 `get` 和 `set` 关键词：
+setters 和 Getters 是一种提供对方法属性读和写的特殊方法。每个实例变量都有一个隐式的 getter 方法，合适的话可能还会有 setter 方法。你可以通过实现 getters 和 setters 来创建附加属性，也就是直接使用 `get` 和 `set` 关键词：
 
 <pre>
 class Rectangle {
@@ -333,12 +333,13 @@ main() {
 }
 </pre>
 
-用 getter 和 setter ，你可以始于实例变量，然后把他们包装成方法，这都不改变客户端代码。
+借助于 getter 和 setter ，你可以直接使用实例变量，并且在不改变客户代码的情况下把他们包装成方法。
 
-注：操作符如增量（++）以预期的方式工作，不论是否明确定义了一个 getter 。为了避免任何意外的副作用，操作符一旦调用 getter ，就会把他的值存在临时变量里。
+注：不论是否显示地定义了一个 getter，类似增量（++）的操作符都能以预期的方式工作。为了避免产生任何向着不期望的方向的影响，操作符一旦调用 getter ，就会把他的值存在临时变量里。
+
 抽象方法
 
-Instance ， getter 和 setter 方法可以是抽象的，定义一个接口而实现了其他类。创建一个抽象方法，使用分号（；）代替方法体：
+Instance ， getter 和 setter 方法可以是抽象的，也就是定义一个接口，但是把实现交给其他的类。要创建一个抽象方法，使用分号（；）代替方法体：
 
 <pre>
 abstract class Doer {
@@ -360,7 +361,7 @@ class EffectiveDoer extends Doer {
 
 重载操作符
 
-你可以重写在下表中显示的操作符。例如，如果你定义了一个向量类，你可以定义一个 + 方法来加两个向量。
+你可以重写在下表中列出的操作符。例如，如果你定义了一个向量类，你可以定义一个 + 方法来加两个向量。
 
 <table>
 <tbody>
@@ -424,15 +425,15 @@ main() {
 }
 </pre>
 
-如果你重写了 `==` ，你也应该重写对象的 `hashCode` 的 getter 方法。对于重写 `==` 和 `hashCode` 例子，参见实现 [Implementing map keys](https://www.dartlang.org/docs/dart-up-and-running/ch03.html#implementing-map-keys) 。
+如果你重写了 `==` ，你也应该重写对象中 `hashCode` 的 getter 方法。对于重写 `==` 和 `hashCode` 例子，参见实现 [Implementing map keys](https://www.dartlang.org/docs/dart-up-and-running/ch03.html#implementing-map-keys) 。
 
 想要知道更多关于重载的信息，参见 [Extending a class](https://www.dartlang.org/docs/dart-up-and-running/ch02.html#extending-a-class) 。
 
 抽象类
 
-使用 `abstract` 修饰符来定义一个抽象类，该类不能被实例化。抽象类用于定义接口，经常需要一些实现。如果你想让你的抽象类被实例化，定义一个工厂构造函数。
+使用 `abstract` 修饰符来定义一个抽象类，该类不能被实例化。抽象类在定义接口的时候非常有用，实际上抽象中也包含一些实现。如果你想让你的抽象类被实例化，请定义一个工厂构造函数。
 
-抽象类常有抽象方法。下面是声明一个含有抽象方法的抽象类的例子：
+抽象类通常包含抽象方法。下面是声明一个含有抽象方法的抽象类的例子：
 
 <pre>
 // 这个类是抽象类，因此不能被实例化。
@@ -460,7 +461,7 @@ class SpecializedContainer extends AbstractContainer {
 
 隐式接口
 
-每个类隐式的定义了一个接口，含有类的所有实例和他实现的所有接口。如果你想创建一个类 A 支持类 B 的 API ，但不想继承类 B ，那么，类 A 应该实现类 B 的接口。
+每个类隐式的定义了一个接口，含有类的所有实例和它实现的所有接口。如果你想创建一个支持类 B 的 API 的类 A，但又不想继承类 B ，那么，类 A 应该实现类 B 的接口。
 
 一个类实现一个或更多接口通过用 `implements` 子句声明，然后提供 API 接口要求。例如：
 
@@ -503,7 +504,7 @@ class Point implements Comparable, Location {
 
 扩展一个类
 
-用 `extends` 创建一个子类，用 `supper` 指向父类：
+使用 `extends` 创建一个子类，同时 `supper` 将指向父类：
 
 <pre>
 class Television {
@@ -563,11 +564,11 @@ class A {
 
 枚举类型
 
-枚举类型，通常被称为 enumerations 或 enums ，是一种特殊的用来代表一个固定数量的恒定值的类。
+枚举类型，通常被称为 enumerations 或 enums ，是一种用来代表一个固定数量的常量的特殊类。
 
 使用枚举
 
-声明一个枚举类型使用关键字 `enum` ：
+声明一个枚举类型需要使用关键字 `enum` ：
 
 <pre>
 enum Color {
@@ -577,7 +578,7 @@ enum Color {
 }
 </pre>
 
-在枚举每个值都有一个 `index`  getter 方法，它返回一个在枚举声明值中从 0 开始的位置。例如，第一个值索引值为 0 ，第二个值索引值为 1 。
+在枚举中每个值都有一个 `index`  getter 方法，它返回一个在枚举声明中从 0 开始的位置。例如，第一个值索引值为 0 ，第二个值索引值为 1 。
 
 <pre>
 assert(Color.red.index == 0);
@@ -585,15 +586,14 @@ assert(Color.green.index == 1);
 assert(Color.blue.index == 2);
 </pre>
 
-要得到枚举列表的所有值，可使用枚举的`值`常量。
+要得到枚举列表的所有值，可使用枚举的 `values` 常量。
 
 <pre>
 List<Color> colors = Color.values;
 assert(colors[2] == Color.blue);
 </pre>
 
-你可以在 switch 语句中使用枚举。如果 e 在 `switch (e)` 是显式类型
-的枚举，那么你如果你不处理所有的枚举值会弹出警告：
+你可以在 switch 语句中使用枚举。如果 e 在 `switch (e)` 是显式类型的枚举，那么如果你不处理所有的枚举值将会弹出警告：
 
 <pre>
 enum Color {
@@ -626,7 +626,7 @@ switch (aColor) {
 
 mixins 是一种多类层次结构的类的代码重用。
 
-使用 mixins ，使用 with 关键字后面跟一个或多个 mixin 的名字。下面的例子显示了两个类使用mixins：
+要使用 mixins ，在 with 关键字后面跟一个或多个 mixin 的名字。下面的例子显示了两个使用mixins的类：
 
 <pre>
 class Musician extends Performer with Musical {
@@ -642,7 +642,7 @@ class Maestro extends Person
 }
 </pre>
 
-实现 mixin ，创建一个类继承 Object 类，不声明任何构造函数，不调用 super 。例如：
+要实现 mixin ，就创建一个继承 Object 类的子类，不声明任何构造函数，不调用 super 。例如：
 
 <pre>
 abstract class Musical {
@@ -666,7 +666,7 @@ abstract class Musical {
 
 类的变量和方法
 
-使用 `static` 关键字来实现类的变量和方法。
+使用 `static` 关键字来实现类变量和类方法。
 
 静态变量
 
@@ -684,13 +684,13 @@ main() {
   assert(Color.red.name == 'red');
 }
 </pre>
-只有当使用静态变量时才被初始化。
+只有当静态变量被使用时才被初始化。
 
-注：本章内容依据 lowerCamelCase 风格指南推荐为常量命名。
+注：本章内容依据代码风格指南推荐的 lowerCamelCase 来为常量命名。
 
 静态方法
 
-静态方法（类方法）不在一个实例上操作，从而不必访问 `this` 。例如：
+静态方法（类方法）不在一个实例上进行操作，因而不必访问 `this` 。例如：
 
 <pre>
 import 'dart:math';
@@ -714,6 +714,6 @@ main() {
   assert(distance < 2.9 && distance > 2.8);
 }
 </pre>
-注：考虑到使用高阶层的方法代替静态方法，为了广泛使用的工具和功能。
+注：考虑到使用高阶层的方法而不是静态方法，是为了常用或者广泛使用的工具和功能。
 
-你可以使用静态方法作为编译时常量。例如，你可以通过静态方法作为一个参数为常数的构造函数。
+你可以将静态方法作为编译时常量。例如，你可以把静态方法作为一个参数传递给静态构造函数。
